@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using DatingApp2.API.Data;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace DatingApp2.API
 {
@@ -27,8 +28,12 @@ namespace DatingApp2.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper();
             services.AddDbContext<DataContext>(x=>x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
+            services.AddScoped<IAuthRepositry,AuthRepositry>();
+            services.AddScoped<IDatingRepositry,DatingRepositry>();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,7 +43,8 @@ namespace DatingApp2.API
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
+            app.UseCors(x=>x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -49,6 +55,7 @@ namespace DatingApp2.API
             {
                 endpoints.MapControllers();
             });
+            //app.UseMvc();
         }
     }
 }

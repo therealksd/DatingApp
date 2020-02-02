@@ -1,0 +1,6 @@
+.btn:disabled{
+    cursor: not-allowed;
+}
+.dropdown:hover{
+cursor: pointer;
+}
