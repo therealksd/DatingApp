@@ -14,7 +14,9 @@ namespace DatingApp2.API.Data
                 opt.MapFrom(sourceMember=>sourceMember.Photos.FirstOrDefault(p=>p.IsMain).Url);
             });
             CreateMap<Photo,PhotosForListDto>();
+            CreateMap<UserForListDto,User>();
+            CreateMap<UserRegisterDto,User>();
+            CreateMap<User,UserRegisterDto>();
         }
-        
     }
 }

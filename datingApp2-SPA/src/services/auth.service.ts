@@ -11,14 +11,20 @@ baseUrl="https://localhost:5001/api/Auth/"
 constructor(private http:HttpClient,
             private alertify:AlertifyService) { }
 
+
+signUp(model){
+  return this.http.post(this.baseUrl+'register',model)
+}
+
 login(model)
 {
 return this.http.post(this.baseUrl+'login',model)
 .subscribe((response:any)=>{
   if(response)
   {
-    //console.log(response)
     localStorage.setItem("token",response.userName)
+    localStorage.setItem("idd",response.id)
+    this.alertify.success("Successfully LoggedIn")
   }
 },(error:any)=>{
 
@@ -29,7 +35,8 @@ return this.http.post(this.baseUrl+'login',model)
 loggedIn():boolean
 {
   let token=localStorage.getItem("token");
-  if(token===null) return false
+  //console.log(token)
+  if(!token) return false
   return true
 }
 }

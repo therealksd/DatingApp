@@ -11,12 +11,12 @@
         <a class="nav-link" routerLink="/messages">Messages</a>
       
     </ul>
-    <div class="nav-item dropdown" *ngIf="authService.loggedIn()" >
+    <div class="nav-item dropdown" *ngIf="authService.loggedIn" >
       <a  class="nav-link dropdown-toggle text-light" data-toggle="dropdown">
         Welcome
       </a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
+        <a class="dropdown-item" [routerLink]="['edit',2]"><i class="fa fa-user"></i> Edit Profile</a>
         <a class="dropdown-item" href="#">Another action</a>
         <a class="dropdown-item" (click)="signout()"><i class="fa fa-sign-out"></i>LogOut</a>
       </div>

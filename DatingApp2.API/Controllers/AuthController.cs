@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using DatingApp2.API.Data;
 using System.Threading.Tasks;
 using DatingApp2.API.Dtos;
+using AutoMapper;
 using DatingApp2.API.Models;
 using System.Security.Claims;
 
@@ -12,9 +13,10 @@ namespace DatingApp2.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthRepositry _repo;
-        public AuthController(IAuthRepositry repo)
+        private readonly IMapper _mapper;
+        public AuthController(IAuthRepositry repo,IMapper mapper)
         {
-            _repo = repo;
+            _repo = repo;_mapper=mapper;
 
         }
 
@@ -23,17 +25,15 @@ namespace DatingApp2.API.Controllers
         {
             userforRegisterDto.Username=userforRegisterDto.Username.ToLower();
             if(await _repo.UserExists(userforRegisterDto.Username)) return BadRequest("UserName already Exists");
-            var userToCreate=new User
-            {
-                UserName=userforRegisterDto.Username,
-                Password=userforRegisterDto.Password
-            };
+            var userToCreate=_mapper.Map<User>(userforRegisterDto);
            await _repo.Register(userToCreate);
-           return StatusCode(201);
+           var userToReturn=_mapper.Map<UserForListDto>(userToCreate); 
+           //need to read about it
+           return CreatedAtAction("GetUser",new{controller="Users", id=userToCreate.Id},userToReturn);
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(UserRegisterDto userforLogin)
+        public async Task<IActionResult> Login(UserForLoginDTO userforLogin)
         {
             var userFromRepo =await _repo.Login(userforLogin.Username,userforLogin.Password);
             if(userFromRepo==null) return Unauthorized();

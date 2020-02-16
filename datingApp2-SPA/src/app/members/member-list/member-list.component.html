@@ -1,0 +1,8 @@
+<div class="container">
+    <div class="row">
+        <div *ngFor="let user of allUsers" class="col-lg-2 col-md-3 col-sm-6">
+            <member-card [UserFromParent]="user"></member-card>
+        </div>
+    </div>
+    
+</div> 

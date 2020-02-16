@@ -1,0 +1,15 @@
+.card{
+    padding: 10px;
+    overflow: hidden;
+}
+.tab-panel{
+    padding: 0px;
+}
+.x{
+    border:0.5px solid gray;
+    width: 100%;
+    padding: 10px;
+}
+.card-footer{
+    margin-top: 18px;
+}

@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
                 private alertify:AlertifyService) {}
     canActivate():boolean
     {
-      if(this.authService.loggedIn()) return true
+      if(this.authService.loggedIn()) {console.log("auth passed");return true;}
       this.alertify.error("You are not authorized!!!")
       return false;
     }

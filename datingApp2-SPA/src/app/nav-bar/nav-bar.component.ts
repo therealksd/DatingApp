@@ -11,23 +11,26 @@ import { AlertifyService } from 'src/services/alertify.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-
-  constructor(public authService:AuthService,private rout:Router,private alertify:AlertifyService) { }
+  idOfCurrentUser
+  constructor(public authService:AuthService,private route:Router,private alertify:AlertifyService) { }
   ngOnInit() {
   }
   async login(form:NgForm)
   {
-    await this.authService.login(form.value);
-    if(this.authService.loggedIn()===true)
+    //console.log("1")
+    if(await this.authService.login(form.value))
     {
-      this.rout.navigate(['/home']);
-      this.alertify.success("Successfully LoggedIn")
+      this.idOfCurrentUser=localStorage.getItem("idd")
+      this.route.navigate(['/members']);
     }
+    //console.log("3")
+    
+    
   }
   signout()
   {
     localStorage.clear();
-    this.rout.navigate(['/home']);
+    this.route.navigate(['/home']);
     this.alertify.success("Successfully Logged Out")
   }
 

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DatingApp2.API.Models;
+using DatingApp2.API.Dtos;
 
 namespace DatingApp2.API.Data
 {
@@ -14,3 +15,14 @@ namespace DatingApp2.API.Data
          
     }
 }
+
+/*
+public void signUp(UserRegisterDto user)
+        {
+            User newUser=AutoMapper.Mapper.Map<User>(user);
+            _context.Users.Add(newUser);
+            _context.SaveChanges();
+
+
+        }
+*/
