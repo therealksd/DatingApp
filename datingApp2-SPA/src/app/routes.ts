@@ -8,7 +8,7 @@ import { MemberDetailComponent } from './members/memberDetail/memberDetail.compo
 import { MemberEditComponent } from './members/memberEdit/memberEdit.component';
 
 export const appRoutes:Routes=[
-    {path:'home',component:HomeComponent},
+    {path:'',component:HomeComponent},
     {path:'members',component:MemberListComponent},
     {path:'',
         runGuardsAndResolvers:'always',

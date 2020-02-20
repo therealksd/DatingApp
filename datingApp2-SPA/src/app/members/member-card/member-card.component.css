@@ -13,6 +13,7 @@
     overflow: hidden;
     position: relative;
 }
+
 .member-icons{
     position: absolute;
     bottom: -30%;
@@ -28,4 +29,7 @@
 }
 .animate{
 transition: all 0.3s ease-in-out;
+}
+a:hover{
+    cursor: pointer;
 }

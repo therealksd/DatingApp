@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using DatingApp2.API.Data;
 using System.Threading.Tasks;
@@ -36,8 +37,10 @@ namespace DatingApp2.API.Controllers
         public async Task<IActionResult> Login(UserForLoginDTO userforLogin)
         {
             var userFromRepo =await _repo.Login(userforLogin.Username,userforLogin.Password);
+
             if(userFromRepo==null) return Unauthorized();
-            return Ok(userFromRepo);
+            var userToReturn=_mapper.Map<UserForListDto>(userFromRepo);
+            return Ok(userToReturn);
         }
 
     }

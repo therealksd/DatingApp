@@ -2,12 +2,14 @@ import { Photo } from './Photo';
 
 export interface User {
     id:number;
-    username:string;
+    userName:string;
     knownAs:string;
     age:number;
+    password:string;
     gender:string;
     created:Date;
     lastActive:Date;
+    dateOfBirth:Date;
     url:string;
     city:string;
     country:string;

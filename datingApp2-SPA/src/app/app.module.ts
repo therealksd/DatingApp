@@ -21,6 +21,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { MemberDetailComponent } from './members/memberDetail/memberDetail.component';
 import { MemberEditComponent } from './members/memberEdit/memberEdit.component';
 import { EditResolve } from 'src/_resolvers/editResolve';
+import { TimeagoModule } from 'ngx-timeago';
 
 @NgModule({
    declarations: [
@@ -38,6 +39,7 @@ import { EditResolve } from 'src/_resolvers/editResolve';
    imports: [
       BrowserModule,
       ReactiveFormsModule,
+      TimeagoModule.forRoot(),
       AppRoutingModule,
       HttpClientModule,
       FormsModule,

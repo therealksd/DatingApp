@@ -19,17 +19,7 @@ signUp(model){
 login(model)
 {
 return this.http.post(this.baseUrl+'login',model)
-.subscribe((response:any)=>{
-  if(response)
-  {
-    localStorage.setItem("token",response.userName)
-    localStorage.setItem("idd",response.id)
-    this.alertify.success("Successfully LoggedIn")
-  }
-},(error:any)=>{
 
- this.alertify.error("Verification Failed")
-})
 }
 
 loggedIn():boolean

@@ -1,3 +1,23 @@
-<p>
-  list works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-6" style="text-align: center">
+      <button class="btn btn-primary" (click)="liked=true">Members who Like me</button>
+    </div>
+    <div class="col-6" style="text-align: center">
+      <button class="btn btn-success" (click)="liked=false">Members who i like</button>
+    </div>
+    <h2 *ngIf="liked">{{usersToshow2.length}} Members Likes You...</h2>
+    <h2 *ngIf="!liked">You like {{usersToshow.length}} Members...</h2>
+  </div>
+  <div class="row mt-5" *ngIf="!liked">
+    <div *ngFor="let user of usersToshow" class="col-lg-2 col-md-3 col-sm-6">
+        <member-card [UserFromParent]="user"></member-card>
+    </div>
+</div>
+<div class="row mt-5" *ngIf="liked">
+  <div *ngFor="let user of usersToshow2" class="col-lg-2 col-md-3 col-sm-6">
+      <member-card [UserFromParent]="user"></member-card>
+  </div>
+</div>
+  
+</div>

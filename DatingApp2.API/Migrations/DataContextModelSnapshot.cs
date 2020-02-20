@@ -16,6 +16,21 @@ namespace DatingApp2.API.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.1");
 
+            modelBuilder.Entity("DatingApp2.API.Models.Like", b =>
+                {
+                    b.Property<int>("LikeeId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("LikerId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("LikeeId", "LikerId");
+
+                    b.HasIndex("LikerId");
+
+                    b.ToTable("Likes");
+                });
+
             modelBuilder.Entity("DatingApp2.API.Models.Photo", b =>
                 {
                     b.Property<int>("Id")
@@ -103,6 +118,21 @@ namespace DatingApp2.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Values");
+                });
+
+            modelBuilder.Entity("DatingApp2.API.Models.Like", b =>
+                {
+                    b.HasOne("DatingApp2.API.Models.User", "Likee")
+                        .WithMany("Liker")
+                        .HasForeignKey("LikeeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("DatingApp2.API.Models.User", "Liker")
+                        .WithMany("Likee")
+                        .HasForeignKey("LikerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DatingApp2.API.Models.Photo", b =>

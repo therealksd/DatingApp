@@ -12,17 +12,9 @@ namespace DatingApp2.API.Data
          Task<bool> SaveAll();
          Task<IEnumerable<User>> GetUsers();
          Task<User> GetUser(int id);
-         
+         Task<User> UpdateUser(UserForListDto user);
+         Task<Like> GetLike(int userId,int RecipientUId);
+         Task<IEnumerable<User>> GetLikeUsers(int id);
+         Task<IEnumerable<User>> GetUsersWhoLike(int id);
     }
 }
-
-/*
-public void signUp(UserRegisterDto user)
-        {
-            User newUser=AutoMapper.Mapper.Map<User>(user);
-            _context.Users.Add(newUser);
-            _context.SaveChanges();
-
-
-        }
-*/

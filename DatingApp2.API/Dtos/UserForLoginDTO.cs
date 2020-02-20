@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System;
 namespace DatingApp2.API.Dtos
 {
     public class UserForLoginDTO
@@ -8,5 +9,7 @@ namespace DatingApp2.API.Dtos
         [Required]
         [StringLength(7,MinimumLength=4,ErrorMessage="Password must be btw 4 and 7 Character")]
         public string Password { get; set; }
+        public DateTime LastActive { get; set; }
+        
     }
 }

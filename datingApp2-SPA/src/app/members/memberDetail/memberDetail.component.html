@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col sm-4">
       <div class="card" style="width: 25rem;">
-        <img class="card-img-top img-thumbnail" [src]="userToshow?.url || '../../../../assets/default.png'" alt="">
+        <img class="card-img-top img-thumbnail" src="{{userToshow?.url || '../../../../../assets/userpic.png'}}" alt="">
         <div class="card-body">
           <div>
             <strong>Location:</strong>
@@ -17,11 +17,11 @@
           </div>
           <div>
             <strong>Last Active:</strong>
-          <p>{{userToshow?.lastActive}}</p>
+          <p>{{userToshow?.lastActive | timeago:'live'}}</p>
           </div>
           <div>
             <strong>Member Since:</strong>
-          <p>{{userToshow?.created}}</p>
+          <p>{{userToshow?.created | date:'mediumDate'}}</p>
           </div>
         </div>
         <div class="card-footer">

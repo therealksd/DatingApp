@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using DatingApp2.API.Models;
 using System.Linq;
@@ -15,8 +16,10 @@ namespace DatingApp2.API.Data
         }
         public async Task<User> Login(string Username, string Password)
         {
-           var user=await _context.Users.FirstOrDefaultAsync(x=>x.UserName==Username && x.Password==Password);
+           var user=await _context.Users.Include(p=>p.Photos).FirstOrDefaultAsync(x=>x.UserName==Username && x.Password==Password);
            if(user==null) return null;
+           user.LastActive=DateTime.Now;
+           _context.SaveChanges();
            return user; 
         }
 

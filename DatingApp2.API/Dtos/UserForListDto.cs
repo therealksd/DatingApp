@@ -11,6 +11,7 @@ namespace DatingApp2.API.Dtos
         public string Gender { get; set; }
         public int Age { get; set; }
         public string KnownAs { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public DateTime Created { get; set; }
         public DateTime LastActive { get; set; }
         public string Introduction { get; set; }
@@ -20,5 +21,9 @@ namespace DatingApp2.API.Dtos
         public string Country { get; set; }
         public string url { get; set; }
         public ICollection<PhotosForListDto> Photos { get; set; }
+        public UserForListDto()
+        {
+            Age=System.DateTime.Now.Year-DateOfBirth.Year;
+        }
     }
 }
